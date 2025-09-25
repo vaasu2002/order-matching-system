@@ -57,7 +57,7 @@ namespace OrderEngine {
     };
 
     /* Bitmask flags representing special order conditions. Multiple conditions can be combined
-     * - NO_CONDITIONS      : Default, no special execution constraints.
+     * - NO_CONDITIONS      : Default, no special execution constraints. (DEFAULT)
      * - ALL_OR_NONE        : Order must be filled completely or not at all.
      * - IMMEDIATE_OR_CANCEL: Order must execute immediately; unfilled portion is cancelled.
      * - FILL_OR_KILL (FOK) : Combination of ALL_OR_NONE and IMMEDIATE_OR_CANCEL — 
