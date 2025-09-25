@@ -159,7 +159,7 @@ namespace OrderEngine {
         explicit OrderTracker(bool is_buy_side) : is_buy_side_(is_buy_side) {}
         
         // Add order to tracker
-        bool add_order(const OrderPtr& order) {
+        bool addOrder(const OrderPtr& order) {
             Price price = order->price();
             
             // Find or create price level
@@ -268,7 +268,7 @@ namespace OrderEngine {
         bool empty() const { return price_levels_.empty(); }
         
         // Match against incoming order (for crossing trades)
-        std::vector<std::pair<OrderPtr, Quantity>> match_quantity(Price limit_price, Quantity max_quantity) {
+        std::vector<std::pair<OrderPtr, Quantity>> matchQuantity(Price limit_price, Quantity max_quantity) {
             std::vector<std::pair<OrderPtr, Quantity>> matches;
             Quantity remaining = max_quantity;
             
