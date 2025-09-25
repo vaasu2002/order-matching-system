@@ -3,6 +3,8 @@
 #define ORDER_BOOK_H
 
 #include "OrderTypes.h"
+#include "Listeners.h"
+#include "OrderTracker.h"
 #include <atomic>
 
 namespace OrderEngine{
