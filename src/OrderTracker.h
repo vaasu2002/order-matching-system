@@ -1,6 +1,12 @@
+#pragma once
+#ifndef ORDER_TRACKER_H
+#define ORDER_TRACKER_H
+
 #include "Order.h"
+#include "OrderTypes.h"
 #include <map>
 #include <list>
+#include <vector>
 #include <memory>
 #include <algorithm>
 // DOUBTS: Where to use PriceComparator?
@@ -303,3 +309,5 @@ namespace OrderEngine {
     };
 
 } // namespace OrderEngine
+
+#endif // ORDER_TRACKER_H
