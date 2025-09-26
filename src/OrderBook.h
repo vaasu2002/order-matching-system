@@ -6,7 +6,7 @@
 #include "Listeners.h"
 #include "OrderTracker.h"
 #include <atomic>
-
+#include <mutex>
 namespace OrderEngine{
 
     /**
@@ -19,7 +19,7 @@ namespace OrderEngine{
     template<typename OrderPtr> struct TradeExecution {
         OrderPtr inbound_order; // The "aggressive" order that just arrived (initiator of the trade)
         OrderPtr resting_order; // The "passive" order that was already in the book (the one being hit or lifted)
-        Quantity quantity; // 
+        Quantity quantity; 
         Price price;
         Timestamp timestamp;
         FillFlags flags;
@@ -68,7 +68,6 @@ namespace OrderEngine{
 
         public:
         using OrderTracker = OrderEngine::OrderTracker<OrderPtr>;
-        using DepthTracker = OrderEngine::DepthTracker<10>; // 10 levels of depth
         using TradeExecution = OrderEngine::TradeExecution<OrderPtr>;
         using OrderListenerPtr = std::shared_ptr<OrderListener<OrderPtr>>;
         using TradeListenerPtr = std::shared_ptr<TradeListener<OrderPtr>>;
@@ -81,7 +80,6 @@ namespace OrderEngine{
         OrderTracker mAskTracker;     // Manages all sell orders
         OrderTracker mStopBidTracker; // Manages all stop buy orders
         OrderTracker mStopAskTracker; // Manages all stop sell orders
-        DepthTracker mDepthTracker;   // Manages order book depth
 
         // Market state
         std::atomic<Price> mMarketPrice;
@@ -121,7 +119,7 @@ namespace OrderEngine{
 
         void setmarketprice(Price price) {
             mMarketPrice.store(price);
-            check_stop_orders();
+            // todo: checkStopOrders();
         }
 
         // ========== Listener Management ==========
